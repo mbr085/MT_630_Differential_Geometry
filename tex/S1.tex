@@ -1,0 +1,77 @@
+
+% \input{latex_setup.tex}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Euclidean Space}
+\begin{frame}
+\begin{columns}
+  \begin{column}
+    {0.6\textwidth}
+    \begin{block}
+      {Euclidean Space}
+      \begin{itemize}
+        \item \(\R^n\) prototype of all manifolds
+        \item generalize differential and integral calculus a manifold
+        \item coordinates good for computations
+        \item some computations are invariant under change of coordinates
+        \item manifolds do not have preferred coordinates
+        \item the "$dx$" in integration is not invariant under change of coordinates
+      \end{itemize}
+    \end{block}
+  \end{column}
+  \begin{column}
+    {0.4\textwidth}
+  \end{column}
+\end{columns}
+\section{Smooth Functions on a Euclidean Space}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Smooth Functionctons on a Euclidean Space}
+  \begin{block}
+    {Supersctipt Convention}
+    Point $p$ in $\R^n$ written $p = (p^1, \dots, p^n)$ with 
+    coordinates $x^1, \dots, x^n$.
+  \end{block}
+  \begin{definition}
+    The {\em open ball} $B(p, \varepsilon)$ around $p$ of radius $\varepsilon$ is
+    \begin{displaymath}
+      B(p, \varepsilon) = \{x \in \R^n \, \mid \, |x - p| < \varepsilon\}
+    \end{displaymath}
+  \end{definition}
+  \begin{definition}
+    $U \subseteq \R^n$ is open if for every $p \in U$, there exists
+    $\varepsilon > 0$ such that $B(p, \varepsilon) \subseteq U$.
+  \end{definition}
+\end{frame}
+\begin{frame}
+
+  \begin{definition}
+    Suppose $p \in U$ with $U \subseteq \R^n$
+    open. 
+    A function $f \colon U \to \R$ is
+    \begin{itemize}
+      \item $C^0$ if it continuous
+      \item $C^1$ if $\frac{\partial f}{\partial x^i}(p)$ exists for all 
+        $p \in U$ and $\frac{\partial f}{\partial x^i} \colon U \to \R$ is 
+        continuous for $i = 1, \dots, n$.
+      \item $C^k$ for $k \ge 2$ if $\frac{\partial f}{\partial x^i}(p)$ exists for all 
+        $p \in U$ and $\frac{\partial f}{\partial x^i} \colon U \to \R$ is 
+        $C^{k-1}$ for $i = 1, \dots, n$.
+      \item $C^\infty$ if it is $C^k$ for all $k$.
+      \item {\em smooth} if it is $C^\infty$.
+      \item $C^\infty(U)$ is the set of smooth functions from $U$ to $\R$.
+    \end{itemize}
+    \begin{exercise}
+      Find the biggest $k$ such that $f(x) = |x^3|$ is $C^k$.
+    \end{exercise}
+  \end{definition}
+  
+
+\end{frame}
+
+

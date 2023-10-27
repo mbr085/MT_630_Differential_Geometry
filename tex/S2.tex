@@ -1,0 +1,363 @@
+\section{Tangent Vectors in \texorpdfstring{$\R^n$} as Derivations}
+\begin{frame}
+  \frametitle{Tangent Vectors in $\R^n$ as Derivations}
+  \begin{block}
+    {Directional Derivatives}
+  \begin{itemize}
+    \item $T_p\R^n$ is the tangent space at $p \in \R^n$.
+    \item $T_p \R^n \cong \{p\} \times \R^n \cong \R^n$.
+    \item $v \in T_p\R^n$ gives a directional derivative $D_v \colon
+      C^{\infty}(\R^n) \to \R$
+  \end{itemize}
+  \end{block}
+  \begin{block}
+    {Definition of Directional Derivative (calculus)}
+    Given $v \in \R^n$, the function $D_v \colon C^{\infty}(U) \to \R$ takes 
+    $f \in C^{\infty}(U)$ to the real number 
+    \begin{displaymath}
+      D_vf = \lim_{t \to 0} \frac{f(p + tv) - f(p)}{t}
+    \end{displaymath}
+  \end{block}
+  \begin{exercise}
+    Show that given $f, g \in C^{\infty}(U)$, we have 
+    \begin{itemize}
+      \item $D_v(f+g) = D_vf + D_v g$
+      \item $D_v(fg) = (D_vf)g(p) + f(p)D_vg$
+    \end{itemize}
+  \end{exercise}
+\end{frame}
+\begin{frame}
+  \begin{block}
+    {Standard basis}
+    We write $e_1, \dots, e_n$ for the standard basis on $T_p \R^n$. A
+    vector $v \in T_p\R^n$ is written
+    \begin{displaymath}
+      v = 
+      \begin{bmatrix}
+        v^1 \\
+        \vdots \\
+        v^n
+      \end{bmatrix}
+      = \sum_i v^i e_i
+    \end{displaymath}
+    where $e_i$ is the $i$-th standard basis vector.
+  \end{block}
+  \begin{block}
+    {Directional Derivative and Partial Derivatives}
+    Let $c(t) = \sum_i c^i(t) e_i= p + tv $. The chain rule says that
+    \begin{displaymath}
+      D_vf = \lim_{t \to 0} \frac{f(p + tv) - f(p)}{t} = \frac{d(f \circ c)}{dt}(0) =
+      \sum_i \frac{dc^i}{dt}(0) \frac{\partial f}{\partial x^i}(p)
+      = \sum_i v^i \frac{\partial f}{\partial x^i}(p)
+    \end{displaymath}
+    Conclusion: at the point $p$,
+    \begin{displaymath}
+      D_v
+      = \sum_i v^i \frac{\partial }{\partial x^i}
+    \end{displaymath}
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Germs of Functions}
+  Let $U$ and $V$ be open sets in $\R^n$ both containing a point $p$.
+  \begin{block}
+    {Observation}
+    Let $f \in C^{\infty}(U)$ and $g \in C^{\infty}(V)$.
+    If
+    there exists an $\varepsilon > 0$
+    such that $f$ and $g$ agree on $B(p, \varepsilon) \subseteq U \cap V$, then 
+    $D_v f = D_v g$ for every $v \in T_p\R^n$.
+  \end{block}
+  \begin{definition}
+    Given $f \in C^{\infty}(U)$ and $g \in C^{\infty}(V)$, we say that $(f, U)$ and
+    $(g, V)$ are {\em equivalent} if there exists an $\varepsilon > 0$ such that $f$
+    and $g$ agree on $B(p, \varepsilon) \subseteq U \cap V$. Show that this is
+    an equivalence relation $\sim_p$. (That is, reflexive, symmetric and transitive.)
+  \end{definition}
+  \begin{definition}[Germs]
+    The set $C^{\infty}_p(\R^n)$ of {\em germs} of functions at $p \in \R^n$ is
+    the set of equivalence classes of the equivalence relation $\sim_p$ on
+    the set of pairs $(f, U)$ of an open set $U \subseteq \R^n$ and a function
+    $f \in C^{\infty}(U)$
+  \end{definition}
+\end{frame}
+\begin{frame}
+  \begin{definition}
+    Given $f \in C^{\infty}(U)$ and $g \in C^{\infty}(V)$, we say that $(f, U)$ and
+    $(g, V)$ are {\em equivalent} if there exists an $\varepsilon > 0$ such that $f$
+    and $g$ agree on $B(p, \varepsilon) \subseteq U \cap V$. Show that this is
+    an equivalence relation $\sim_p$. (That is, reflexive, symmetric and transitive.)
+  \end{definition}
+  \begin{example}
+    Let $p = 1$ and $U = V = \R$. Define $f(x) = e^{-1/x}$ and 
+    \begin{displaymath}
+      g(x) =
+      \begin{cases}
+        e^{-1/x} & x > 0 \\
+        0 & x \le 0.
+      \end{cases}
+    \end{displaymath}
+    Then $f \sim_1 g$.
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \begin{definition}[Germs]
+    The set $C^{\infty}_p(\R^n)$ of {\em germs} of functions at $p \in \R^n$ is
+    the set of equivalence classes $[f, U]$ of the equivalence relation $\sim_p$ on
+    the set of pairs $(f, U)$ of an open set $U \subseteq \R^n$ and a function
+    $f \in C^{\infty}(U)$
+  \end{definition}
+  \begin{exercise}
+    Show that the following operations are well-defined for $[f, U], [g, V] \in 
+    C^{\infty}_p(\R^n)$ and $r \in \R$:
+    \begin{enumerate}
+      \item $r[f, U] = [rf, U]$
+      \item $[f, U] + [g, V] = [f + g, U \cap V]$
+      \item $[f, U] [g, V] = [fg, U \cap V]$
+    \end{enumerate}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}
+  \begin{definition}[Germs]
+    The set $C^{\infty}_p(\R^n)$ of {\em germs} of functions at $p \in \R^n$ is
+    the set of equivalence classes $[f, U]$ of the equivalence relation $\sim_p$ on
+    the set of pairs $(f, U)$ of an open set $U \subseteq \R^n$ and a function
+    $f \in C^{\infty}(U)$
+  \end{definition}
+  \begin{definition}[Point Derivations]
+    The set $\pder(\R^n)$ of {\em point-derivations at $p$} is the set of 
+    linear maps $D \colon C^{\infty}_p(\R^n) \to \R$ satisfying the Leibniz rule
+    \begin{displaymath}
+      D(fg) = (Df)g(p) + f(p)Dg.
+    \end{displaymath}
+  \end{definition}
+  Remark: $\pder(\R^n)$ is a real vector-space.
+  \begin{definition}[Directional Derivations]
+    For $v \in T_p(\R^n)$ we define $D_v \in \pder(\R^n)$ by
+    $D_v([f, U]) = D_v(f)$.
+    We write $\phi \colon T_p(\R^n) \to \pder(\R^n)$ for the linear map
+    given by $\phi(v) = D_v$.
+  \end{definition}
+  \begin{thm}
+    $\phi \colon T_p(\R^n) \to \pder(\R^n)$, $v \mapsto \phi(v) = D_v$ is an isomorphism.
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \begin{thm}
+    $\phi \colon T_p(\R^n) \to \pder(\R^n)$, $v \mapsto \phi(v) = D_v$ is an isomorphism.
+  \end{thm}
+  \begin{exercise}
+    Explain why $\phi(e_i) = \frac{\partial}{\partial x^i}$.
+  \end{exercise}
+  \begin{block}
+    {Basis for $\pder(\R^n)$}
+    The vectors 
+    $\phi(e_1) = \frac{\partial}{\partial x^1}, \dots,
+    \phi(e_n) = \frac{\partial}{\partial x^n}$ form a basis 
+    for $\pder(\R^n)$.
+  \end{block}
+  \begin{remark}
+    Later we will use $\pder$ to define tangent spaces of manifolds.
+    The advantage is that $\pder$ is coordiante free.
+  \end{remark}
+\end{frame}
+
+\begin{frame}
+  \begin{definition}[Point Derivations]
+    The set $\pder(\R^n)$ of {\em point-derivations at $p$} is the set of 
+    linear maps $D \colon C^{\infty}_p(\R^n) \to \R$ satisfying the Leibniz rule
+    \begin{displaymath}
+      D(fg) = (Df)g(p) + f(p)Dg.
+    \end{displaymath}
+  \end{definition}
+  \begin{lemma}
+    If $c \in C^{\infty}_p(\R^n)$ is represented by a constant function on 
+    $\R^n$, and $D \in \pder(\R^n)$, then $D(c) = 0$.
+  \end{lemma}
+  \begin{proof}
+    Let $f$ be represented by the function with constant value $1$. Then $c = rf$
+    for an $r \in \R$. Thus, $D(c) = D(rf) = rD(f)$. It suffices to show that 
+    $D(f) = 0$. Now, $f\cdot f = f$, so
+    \begin{displaymath}
+      D(f) = D(f\cdot f) = (Df)f(p) + f(p)Df = (Df) \cdot 1 + 1 \cdot D(f)= 2D(f).
+    \end{displaymath}
+    Subtracting $D(f)$ from both sides we get $0 = D(f)$.
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \begin{lemma}
+    [Taylor with remainder]
+    Let $p \in \R^n$ and $U = B(p, \varepsilon)$. Given $f \in C^{\infty}(U)$,
+    there exist $g_1, g_2, \dots, g_n \in C^{\infty}(U)$ such that 
+    $g_i(p) = \frac{\partial f}{\partial x^i}(p)$ and
+    \begin{displaymath}
+      f(x) = f(p) + \sum_{i} (x^i - p^i) g_i(x)
+    \end{displaymath}
+    for all $x \in U$.
+  \end{lemma}
+  \begin{proof}
+    Given $x \in U$, let $c \colon [0,1] \to U$ be the smooth function with
+    \begin{displaymath}
+      c(t) = p + t(x - p)
+    \end{displaymath}
+    The chain rule for $f \circ c$ states
+    \begin{displaymath}
+      \frac{d}{dt} f(p + t(x-p)) = \frac{d (f \circ c)}{dt} (t)
+      = \sum_i \frac{d c^i}{dt}(t) \frac{\partial f}{\partial x^i}(c(t)).
+    \end{displaymath}
+    Here $c^i(t) = p^i + t(x^i - p^i)$ and $\frac{dc^i}{dt}(t) = x^i - p^i$
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \begin{proof}[proof (cont.)]
+    The chain rule states
+    \begin{displaymath}
+      \frac{d}{dt} f(p + t(x-p))
+      = \sum_i (x^i - p^i) \frac{\partial f}{\partial x^i}(p + t(x - p)).
+    \end{displaymath}
+    Integrate with respect to $t$ from $0$ to $1$ and define
+    \begin{displaymath}
+      g_i(x) = \int_0^1 \frac{\partial f}{\partial x^i} (p + t(x - p)) dt.
+    \end{displaymath}
+    The Leibniz integration rule states that
+    \begin{displaymath}
+      \frac{\partial g_i}{\partial x^j} =
+      \int_0^1 \frac{\partial}{\partial x^j}\frac{\partial f}{\partial x^i} (p + t(x - p)) dt.
+    \end{displaymath}
+    Thus, $g_i(x)$ is in $C^{\infty}(U)$ and $g_i(p) = \frac{\partial
+    f}{\partial x^i}(p)$. The equation on the top implies $f(x) - f(p) = \sum_i
+    (x^i - p^i)g_i(x)$
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \begin{lemma}
+    If $c \in C^{\infty}_p(\R^n)$ is represented by a constant function on 
+    $\R^n$, and $D \in \pder(\R^n)$, then $D(c) = 0$.
+  \end{lemma}
+  \begin{lemma}
+    [Taylor with remainder]
+    Let $p \in \R^n$ and $U = B(p, \varepsilon)$. Given $f \in C^{\infty}(U)$,
+    there exist $g_1, g_2, \dots, g_n \in C^{\infty}(U)$ such that 
+    $g_i(p) = \frac{\partial f}{\partial x^i}(p)$ and
+    \begin{displaymath}
+      f(x) = f(p) + \sum_{i} (x^i - p^i) g_i(x)
+    \end{displaymath}
+    for all $x \in U$.
+  \end{lemma}
+\end{frame}
+
+
+\begin{frame}
+  % \begin{thm}
+  %   $\phi \colon T_p(\R^n) \to \pder(\R^n)$, $v \mapsto \phi(v) = D_v$ is an isomorphism.
+  % \end{thm}
+  \begin{proof}[Proof that $\phi$ given by $v \mapsto D_v$ is  an isomorphism.]
+    We first show that if $\phi(v) = 0$, then $v = 0$. This implies that
+    $\phi$ is injective. If $\phi(v) = D_v = 0$, then $D_v(x^j) = 0$ 
+    for all $j$. Since $D_v = \sum_i v^i \frac{\partial}{\partial x^i}$, this
+    implies that $0 = D_v(x^j) = v^j$. Thus $v = 0$.
+
+    Let $D$ be a derivation at $p$.
+    In order to prove surjectivity, we apply Taylor with remainder.
+    Let $(f, V)$ be a representative of a germ in $C^{\infty}_p(\R^n)$. 
+    Pick $\varepsilon > 0$ such that $U = B(p, \varepsilon) \subseteq V$
+    and let $h = f|_{U}$. Then $[f, V] = [h, U]$.
+    Choose $g_i$ as in Taylor with remainder such that
+    \begin{displaymath}
+      f(x) = f(p) + \sum (x^i - p^i) g_i(x) \quad \text{for $x \in U$}
+    \end{displaymath}
+    Using $D(f(p)) = 0$ and $D(p^i) = 0$ we get
+    \begin{displaymath}
+      Df = \sum (Dx^i)g_i(p) + \sum (p^i - p^i)Dg_i = 
+      \sum (Dx^i) \frac{\partial f}{\partial x^i}(p).
+    \end{displaymath}
+    Since this is true for all $(f, V)$, this shows that $D = D_v$ for 
+    $v$ the vector with $v^i = Dx^i$.
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vector Fields}
+  \begin{definition}[Vector Field]
+    A {\em vector field} on an open $U \subseteq \R^n$ is a collection
+    $X = \{X_p \in T_p\R^n \cond p \in U\}$
+    % \begin{displaymath}
+    %   X = \{X_p \in T_p\R^n \cond p \in U\}
+    % \end{displaymath}
+  \end{definition}
+  For each $p$ write $X_p = \sum a^i(p) \left. \frac{\partial }{\partial
+  x^i}\right\rvert_p$. Then we have functions $a^i \colon U \to \R$.
+  The vector field $X$ is {\em smooth} if the functions $a^i$ are all smooth.
+  Identifying each $T_p U$ with $\R^n$, there is an identification
+  \begin{displaymath}
+    X = \sum a^i \frac{\partial}{\partial x^i} \longleftrightarrow 
+    \begin{bmatrix}
+      a^1 \\ \vdots \\ a^n
+    \end{bmatrix}
+  \end{displaymath}
+  \begin{exercise}
+    Check that the set $\mathfrak{X}(U)$ of vector fields on $U$ is a vector
+    space.
+  \end{exercise}
+\end{frame}
+
+\begin{frame}
+  Define $C^{\infty}(U) \times \mathfrak{X}(U) \to \mathfrak{X}(U)$
+  by $(f \cdot X)_p = f(p) X_p$ for $f \in C^{\infty}(U)$ and $X \in
+  \mathfrak{X}(U)$.
+  \begin{exercise}
+    Check that the set $\mathfrak{X}(U)$ of vector fields on $U$ is
+    a module over the $\R$-algebra $C^{\infty}(U)$, that is, that
+    \begin{enumerate}
+      \item associativity: $(f \cdot g) X = f(gX)$
+      \item identity: $1 \cdot X = X$
+      \item left distributivity: $(f + g) X = fX + gX$
+      \item right distributivity: $f(X + Y) = fX + fY$
+    \end{enumerate}
+  \end{exercise}
+\end{frame}
+\begin{frame}
+  \frametitle{Vector Fields as Derivations}
+  Let $U$ be an open subset of $\R^n$ and
+  let $\mathfrak{X}^{\infty}(U)$ be the set of smooth vector fields on $U$.
+  Let $f \in C^{\infty}(U)$.
+  Given $X \in \mathfrak{X}^{\infty}(U)$, say $X = \sum a^i \partial / \partial
+  x^i$, we define
+  \begin{displaymath}
+    (Xf)(p) = X_p f = \sum a^i(p) \frac{\partial f}{\partial x^i}(p).
+  \end{displaymath}
+  Thus $Xf \in C^{\infty}(U)$
+  and we have defined a map
+  \begin{displaymath}
+    \mathfrak{X}^{\infty}(U) \times C^{\infty}(U) \to C^{\infty}(U),
+    \quad (X, f) \mapsto Xf
+  \end{displaymath}
+  \begin{prop}
+    Given $X \in \mathfrak{X}^{\infty}(U)$ and $f, g \in C^{\infty}(U)$,
+    the following Leibniz rule holds:
+    \begin{displaymath}
+      X(fg) = (Xf)g + fXg.
+    \end{displaymath}
+  \end{prop}
+  \begin{proof}
+    Check equality after evaluating at $p \in U$.
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \begin{definition}
+    A {\em derivation} of $C^{\infty}(U)$ is an $\R$-linear map
+    $D \colon C^{\infty}(U) \to C^{\infty}(U)$
+    satisfying the Leibniz rule $D(fg) = (Df)g + fDg$.
+    We write $\Der(C^{\infty}(U))$ for the real vectorspace of 
+    such derivations.
+  \end{definition}
+  We have constructed a linear function $\mathfrak{X}^{\infty}(U) \to
+  \Der(C^{\infty}(U))$.
+  This is actually an isomorphism. We will not show this now.
+\end{frame}

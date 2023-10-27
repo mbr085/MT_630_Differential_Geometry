@@ -1,0 +1,54 @@
+\documentclass[aspectratio=1610,xcolor=dvipsnames, nb]{beamer}
+\usetheme{SimplePlus}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{latexsym,xcolor}
+\usepackage{amsmath,amssymb}	
+\usepackage{amsthm}
+\usepackage{graphicx}      
+%\subtitle[]{}
+
+
+\author{Morten Brun}
+\institute[]
+{
+  University of Bergen
+}
+\date{\today} % \today will show current date. 
+% Alternatively, you can specify a date.
+
+\makeatletter
+\setbeamertemplate{theorem begin}
+{%
+  \begin{\inserttheoremblockenv}
+    {%
+      \inserttheoremheadfont
+      \inserttheoremname
+      \ifx\inserttheoremaddition\@empty\else\ \inserttheoremaddition\fi%
+    }%
+}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[theorem]
+\newtheorem{lem}{Lemma}[theorem]
+\newtheorem{cor}{Corollary}[theorem]
+\newtheorem{prop}{Proposition}[theorem]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[theorem]
+\newtheorem{remark}{Remark}[theorem]
+\newtheorem{defn}{Definition}[theorem]
+
+\newcommand{\cond}{\, \mid \,}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\pder}{{\mathcal D}_p}
+\newcommand{\Der}{\operatorname{Der}}
+\newcommand{\im}{\operatorname {Im}}
+\newcommand{\sign}{\operatorname {sign}}
