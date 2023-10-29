@@ -2,12 +2,701 @@
   \frametitle{Multilinear Algebra}
   We introduce the Exterior Algebra. This is where tensors in tensor calculus
   live.
+
+  The idea is that when linearizing we obatin tangent spaces, and 
+  we work with these instead of directly with mainfolds. This leads 
+  into multilinear algebra.
 \end{frame}
 \begin{frame}
   \frametitle{Dual Space}
   \begin{block}
+    {Notation}
     Unless otherwise stated, $V$ will be a real vector
     space of dimension $n$, and $e_1, \dots, e_n$ will be
     a basis for $V$.
   \end{block}
+  \begin{definition}
+    The {\em dual} vector space of $V$ is
+    \begin{displaymath}
+      V\dual = \Hom(V, \R),
+    \end{displaymath}
+    the vector space of linear maps form $V$ to $\R$.
+    Elements of $V\dual$ are called {\em covectors}.
+  \end{definition}
+  \begin{exercise}
+    Explain how sum and scalar multiplication makes $V\dual$ a vector space.
+  \end{exercise}
+\end{frame}
+
+\begin{frame}
+  The covectors $\alpha^1, \dots, \alpha^n$ are defined by $\alpha^i(v) = v^i$, 
+  where $v^i$ is the $i$-th coordinate of $v = v^1 e_1 + \dots + v^n e_n$.
+  \begin{block}
+    {Observation}
+    \begin{displaymath}
+      \alpha^i(e_j) = 
+      \begin{cases}
+        1 & \text{if $i = j$} \\
+        0 & \text{otherwise}
+      \end{cases}
+    \end{displaymath}
+  \end{block}
+    \begin{prop}
+      The covectors $\alpha^1, \dots, \alpha^n$ form a basis for $V\dual$.
+    \end{prop}
+    \begin{proof}[Proof (Linearly independent:)]
+      Assume $c_1 \alpha^1 + \dots + c_n \alpha^n = 0$
+      for $c_1, \dots, c_n \in \R$. Evaluate at $e_i$ to get
+      \begin{displaymath}
+        0 = (c_1 \alpha^1 + \dots + c_n \alpha^n )(e_i) = c_i \alpha^i(e_i) =
+        c_i.
+      \end{displaymath}
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \begin{prop}
+      The covectors $\alpha^1, \dots, \alpha^n$ form a basis for $V\dual$.
+    \end{prop}
+    \begin{proof}[Proof (the $\alpha^i$ generate: $V\dual$)]
+      Let $f \in V\dual$ and $v = v^1e_1 + \dots + v^n e_n \in V$.
+      Then 
+      \begin{displaymath}
+        f(v) = v^1f(e_1) + \dots + v^nf(e_n) =
+        f(e_1) \alpha^1(v) + \dots
+        f(e_n) \alpha^n(v)
+      \end{displaymath}
+      This reads $f = f(e_1) \alpha^1 + \dots + f(e_n) \alpha^n.$
+    \end{proof}
+    \begin{block}
+      {Consequence}
+      $V\dual$ has the same dimension as $V$.
+    \end{block}
+    \begin{remark}
+      In linear algebra vectors are column vectors and covectors are row
+      vectors. Multiplication by a fixed row vector gives a linear map
+      from column vectors to the real numbers.
+    \end{remark}
+\end{frame}
+\begin{frame}
+  Let $V^k = V \times \dots \times V$ be the product of $k$ copies of $V$.
+  \begin{defn}
+    A function $f \colon V^k \to \R$ is {\em $k$-linear} if it is
+    linear in each or the $k$ variables:
+    \begin{displaymath}
+      f(v_1, \dots,  x + y, \dots, v_n) =
+      f(v_1, \dots,  x, \dots, v_n) +
+      f(v_1, \dots,  y, \dots, v_n)
+    \end{displaymath}
+    and
+    \begin{displaymath}
+      f(v_1, \dots,  cx, \dots, v_n) =
+      cf(v_1, \dots,  x, \dots, v_n) 
+    \end{displaymath}
+  \end{defn}
+  \begin{example}
+    The scalar product on $\R^n$ is bilinear ($2$-linear),
+    \begin{displaymath}
+      \R^n \times \R^n \to \R^n, \quad (x, y) \mapsto x \cdot y = x^1 y^1 + \dots
+      + x^n y^n
+    \end{displaymath}
+  \end{example}
+  \begin{example}
+    The determinant $\det: \R^n \times \dots \times \R^n \to \R$ is $n$-linear.
+  \end{example}
+\end{frame}
+\begin{frame}
+  Write $L_k(V)$ for the vector space of $k$-linear functions.
+  \begin{exercise}
+    Explain how sum and scalar multiplication makes $L_k(V)$ a vector space.
+    Show that the dimension of $L_k(V)$ is $n^k$.
+  \end{exercise}
+  Convention $L_0(V) = \R$ and $L_1(V) = V\dual$.
+\end{frame}
+\begin{frame}
+  \frametitle{Review of permutations}
+  Let $A = \{1, \dots, k\}$. A {\em permutation} of $A$ is a bijective 
+  function $\sigma \colon A \to A$.
+
+  Let $S_k$ be the set of all permutations
+  of $A$.
+
+  Permutations can be composed $\tau \circ \sigma$
+
+  This makes $S_k$ a group with unit element the identity function.
+
+  A permutation $\sigma$ can be described by its matrix
+  \begin{displaymath}
+    \sigma = 
+    \begin{bmatrix}
+      1 & 2 & \dots & k \\
+      \sigma(1) & \sigma(2) & \dots & \sigma(k)
+    \end{bmatrix}
+  \end{displaymath}
+\end{frame}
+\begin{frame}
+  An {\em inversion} in $\sigma$ is a pair $(\sigma(i), \sigma(j))$ with
+  $\sigma(i) > \sigma(j)$ and $i < j$.
+  \begin{example}
+  \begin{displaymath}
+    \sigma = 
+    \begin{bmatrix}
+      1 & 2 & 3 & 4 & 5 \\
+      3 & 4 & 5 & 2 & 1
+    \end{bmatrix}
+  \end{displaymath}
+    Inversions in $\sigma$ are $(3, 1), (4, 1), (5, 1), (2,1), (3, 2), (4, 2)$
+    and
+    $(5, 2)$. There are $7$ inversions in $\sigma$.
+  \end{example}
+  \begin{defn}
+    A permutation $\sigma$ is {\em even} if it han an even number of
+    inversions. Otherwise it is odd.
+    The sign of $\sigma$ is
+    \begin{displaymath}
+      \sgn(\sigma) = 
+      \begin{cases}
+        1 & \text{if $\sigma$ is even} \\
+        -1 & \text{if $\sigma$ is odd}
+      \end{cases}
+    \end{displaymath}
+  \end{defn}
+  \begin{block}
+    {Fact from algebra}
+    $\sgn(\tau \circ \sigma) = \sgn(\tau) \cdot \sgn(\sigma)$
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Multilinear Functions}
+  Let $f \colon V^k \to \R$ be a $k$-linear function.
+  \begin{defn}
+    $f$ is {\em symmetric} if
+    $f(v_{\sigma(1)}, \dots, v_{\sigma(k)}) = f(v_1, \dots, v_k)$
+    for every $\sigma \in S_k$.
+    \begin{displaymath}
+      S_k(V) = \{f \in L_k(V) \cond \text{$f$ is symmetric}\}
+    \end{displaymath}
+  \end{defn}
+  \begin{defn}
+    $f$ is {\em alternating} if
+    $f(v_{\sigma(1)}, \dots, v_{\sigma(k)}) = \sgn(\sigma) f(v_1, \dots, v_k)$
+    for every $\sigma \in S_k$.
+    \begin{displaymath}
+      A_k(V) = \{f \in L_k(V) \cond \text{$f$ is alternating}\}
+    \end{displaymath}
+  \end{defn}
+  By convention $A_0(V) = S_0(V) = L_0(V) = \R$ and $A_1(V) = S_1(V) = L_1(V) =
+  V\dual$
+\end{frame}
+\begin{frame}
+  \begin{example}
+    The scalar product on $\R^n$ is symmetric
+    \begin{displaymath}
+      \R^n \times \R^n \to \R^n, \quad (x, y) \mapsto x \cdot y = x^1 y^1 + \dots
+      + x^n y^n
+    \end{displaymath}
+  \end{example}
+  \begin{example}
+    The determinant $\det: \R^n \times \dots \times \R^n \to \R$ is alternating
+  \end{example}
+  \begin{example}
+    Given covectors $f \colon V \to \R$ and $g \colon V \to \R$, we can define 
+    an alternating $2$-linear function $f \wedge g \colon V^2 \to \R$ by
+    \begin{displaymath}
+      (f \wedge g)(v, w) = f(v)g(w) - f(w) g(v)
+    \end{displaymath}
+  \end{example}
+\end{frame}
+\begin{frame}
+  There is a function 
+  \begin{displaymath}
+    S_k \times L_k(V) \to L_k(V), \quad (\sigma, f) \mapsto \sigma f
+  \end{displaymath}
+  where 
+  \begin{displaymath}
+    (\sigma f)(v_1, \dots, v_k) = f(v_{\sigma(1)}, \dots, v_{\sigma(k)})
+  \end{displaymath}
+  \begin{block}
+    {Observation}
+    $f$ is symmetric if and only if $\sigma f = f$ for all $\sigma \in S_k$
+
+    $f$ is alternating if and only if $\sigma f = \sgn(\sigma)f$ for all
+    $\sigma \in S_k$
+  \end{block}
+  \begin{lemma}
+    $(\tau \sigma) f = \tau(\sigma f)$ for all $\tau, \sigma \in S_k$ and $f
+    \in L_k(V)$.
+  \end{lemma}
+  \begin{proof}
+    Let $w_i = v_{\tau(i)}$. Then $w_{\sigma(i)} = v_{\tau(\sigma(i))} =
+    v_{(\tau \sigma)(i)}$ and
+    \begin{displaymath}
+      \tau(\sigma f)(v_1, \dots, v_k) = (\sigma f)(w_1, \dots, w_k)
+      = f(w_{\sigma(1)}, \dots, w_{\sigma(k)}) =
+      f(v_{(\tau \sigma(1))}, \dots, v_{(\tau \sigma)(k)})
+    \end{displaymath}
+  \end{proof}
+\end{frame}
+\begin{frame}
+  The above lemma states that $(\sigma, f) \mapsto \sigma f$ is an
+  action of the group $S_k$ on the set $L_k(V)$.
+  \begin{definition}
+    For $f \in L_k(V)$ we define
+    \begin{displaymath}
+      S(f) = \sum_{\sigma \in S_k} \sigma f
+      \quad \text{and} \quad
+      A(f) = \sum_{\sigma \in S_k} \sgn(\sigma)\sigma f
+    \end{displaymath}
+  \end{definition}
+  \begin{prop}
+    $S(f)$ is symmetric and $A(f)$ is alternating.
+  \end{prop}
+  \begin{proof}[Proof that $A(f)$ is alternating]
+    \begin{align*}
+      \tau(Af) &= \sum_{\sigma} \tau(\sgn(\sigma) \sigma f) =
+      \sum_{\sigma} \sgn(\sigma) \tau(\sigma f)\\
+      &= \sum_\sigma \sgn(\sigma) (\tau \sigma) f =
+      \sgn(\tau) \sum_{\sigma} \sgn(\tau \sigma) (\tau \sigma) f = \sgn(\tau) Af
+    \end{align*}
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \begin{lemma}
+    If $f \in A_k(V)$, then $A(f) = (k!)f$.
+  \end{lemma}
+  \begin{proof}
+    \begin{displaymath}
+      A(f) = \sum_{\sigma} (\sgn \sigma) \sigma f =
+      \sum_{\sigma} (\sgn \sigma) (\sgn \sigma) f = (k!) f
+    \end{displaymath}
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \frametitle{The Wedge Product}
+  First define the tensor product of multilinear functions
+  \begin{displaymath}
+    \otimes \colon L_k(V) \times L_l(V) \to L_{k+l}(V),
+    \quad (f, g) \mapsto f \otimes g
+  \end{displaymath}
+  where
+  \begin{displaymath}
+    (f \otimes g)(v_1, \dots, v_k, v_{k+1}, \dots, v_{k+l}) = 
+    f(v_1, \dots, v_k) \cdot 
+    g(v_{k+1}, \dots, v_{k+l})
+  \end{displaymath}
+  If $k = 0$, then $f = c \in \R$ and $f \otimes g = c \otimes g = cg$.
+  \begin{block}
+    {Observation}
+    $\otimes$ is bilinear and associative, $(f \otimes g) \otimes h =
+    f \otimes (g \otimes h)$.
+  \end{block}
+  \begin{definition}
+    The {\em wedge product} is the bilinear function
+    \begin{displaymath}
+      \wedge \colon A_k(V) \times A_l(V) \to A_{k+l}(V), \quad
+      (f, g) \mapsto f \wedge g = \frac{1}{k! l!}A(f \otimes g)
+    \end{displaymath}
+  \end{definition}
+\end{frame}
+\begin{frame}
+  \begin{definition}
+    The {\em wedge product} is the bilinear function
+    \begin{displaymath}
+      \wedge \colon A_k(V) \times A_l(V) \to A_{k+l}(V), \quad
+      (f, g) \mapsto f \wedge g = \frac{1}{k! l!}A(f \otimes g)
+    \end{displaymath}
+  \end{definition}
+  Note that we know that $f \wedge g$ is alternating.
+  Explicitly:
+  \begin{displaymath}
+    (f \wedge g)(v_1, \dots, v_{k+l}) =
+    \frac{1}{k!l!} \sum_{\sigma \in S_{k+l}}
+    f(v_{\sigma(1)}, \dots, v_{\sigma(k)})
+    g(v_{\sigma(k+1)}, \dots, v_{\sigma(k+l)})
+  \end{displaymath}
+  For $k = 0$, $f \in A_0V = \R$ is a constant $c$, and
+  \begin{displaymath}
+    (c \wedge g)(v_1, \dots, v_l) = \frac{1}{l!} 
+    \sum_{\sigma \in S_l} cg(v_{\sigma(1)}, \dots, v_{\sigma(l)}) =
+    cg(v_1, \dots, v_l)
+  \end{displaymath}
+  so $c \wedge g = cg$ for $c \in \R$ and $g \in A_l(V)$.
+  Note that the coefficient $\frac{1}{l!}$ compensates for repetition. 
+  So does the general coefficient $\frac{1}{k!l!}$.
+\end{frame}
+\begin{frame}
+  \begin{example}
+    $f \in A_2(V)$, $g \in A_1(V)$. Then
+    \begin{align*}
+      A(f \otimes f) (v_1, v_2, v_3) &=
+      \phantom{-}
+      f(v_1,v_2)g(v_3) - f(v_1, v_3)g(v_2) + f(v_2, v_3) g(v_1) \\
+      &\phantom{=}-
+      f(v_2,v_1)g(v_3) - f(v_3, v_1)g(v_2) + f(v_3, v_2) g(v_1) \\
+      &=2(
+      f(v_1,v_2)g(v_3) - f(v_1, v_3)g(v_2) + f(v_2, v_3) g(v_1) )
+    \end{align*}
+  \end{example}
+  \begin{definition}
+    $\sigma \in S_{k+l}$ is a $(k,l)$-shuffle if both
+    \begin{displaymath}
+      \sigma(1) < \dots < \sigma(k)
+      \quad \text{ and } \quad
+      \sigma(k+1) < \dots < \sigma(k+l)
+    \end{displaymath}
+  \end{definition}
+  \begin{prop}
+    \begin{displaymath}
+      (f \wedge g)(v_1, \dots, v_{k+l}) = \sum_{(k,l)-\text{shuffle } \sigma}
+      f(v_{\sigma(1)}, \dots, v_{\sigma(k)})
+      g(v_{\sigma(k+1)}, \dots, v_{\sigma(k+l)})
+    \end{displaymath}
+  \end{prop}
+\end{frame}
+\begin{frame}
+  The wedge product is anticommutative:
+  \begin{displaymath}
+    f \wedge g = (-1)^{kl} g \wedge f \quad \text{for $f \in A_k(V)$
+    and $g \in A_l(V)$}
+  \end{displaymath}
+  \begin{proof}
+    Let 
+    \begin{displaymath}
+      \tau = 
+      \begin{bmatrix}
+        1 & \dots & l & l+1 & \dots l+k \\
+        k+1 & \dots & k+ l & 1 & \dots k
+      \end{bmatrix}
+    \end{displaymath}
+    Then
+    \begin{displaymath}
+      \sigma(1) = \sigma \tau(l+1), \dots, \sigma(k) = \sigma \tau(l+k)
+    \end{displaymath}
+    and
+    \begin{displaymath}
+      \sigma(k+1) = \sigma \tau(1), \dots, \sigma(k+l) = \sigma \tau(l)
+    \end{displaymath}
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \begin{proof}[Proof (cont.)]
+    For $v_1, \dots, v_{k+l} \in V$ we have
+    \begin{align*}
+      \phantom{=}&
+      A(f \otimes g)(v_1, \dots, v_{k+l}) \\
+      =&
+      \sum_{\sigma} \sgn(\sigma)
+      f(v_{\sigma(1)}, \dots, v_{\sigma(k)})
+      g(v_{\sigma(k+1)}, \dots, g_{\sigma(k+l)}) \\
+      =&
+      \sum_{\sigma} \sgn(\sigma)
+      f(v_{\sigma\tau(l+1)}, \dots, v_{\sigma\tau(l+k)})
+      g(v_{\sigma\tau(1)}, \dots, g_{\sigma\tau(l)})
+      \\
+      =&
+      \sum_{\sigma} \sgn(\sigma)
+      g(v_{\sigma\tau(1)}, \dots, g_{\sigma\tau(l)})
+      f(v_{\sigma\tau(l+1)}, \dots, v_{\sigma\tau(l+k)})
+      \\
+      =&
+      \sgn(\tau)\sum_{\sigma} \sgn(\sigma\tau)
+      g(v_{\sigma\tau(1)}, \dots, g_{\sigma\tau(l)}) 
+      f(v_{\sigma\tau(l+1)}, \dots, v_{\sigma\tau(l+k)})
+      \\
+      =&
+      \sgn(\tau) A(g \otimes f)(v_1, \dots, v_{k+l})
+    \end{align*}
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \begin{proof}[Proof (cont.)]
+    We conclude that
+    \begin{displaymath}
+      A(f \otimes g)(v_1, \dots, v_{k+l}) 
+      =
+      \sgn(\tau) A(g \otimes f)(v_1, \dots, v_{k+l})
+    \end{displaymath}
+    Dividing by $k!l!$ on both sides gives $f \wedge g = \sgn(\tau) g \wedge
+    f$.
+    Now, $\sgn(\tau) = (-1)^{kl}$ because $\tau$ has $kl$ inversions.
+  \end{proof}
+  \begin{cor}
+    If $k$ is odd and $f \in A_k(V)$, then $f \wedge f = 0$.
+  \end{cor}
+  \begin{proof}
+    \begin{displaymath}
+      f \wedge f = (-1)^{k^2} f \wedge f = - f \wedge f
+      \Rightarrow f \wedge f = 0
+    \end{displaymath}
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \begin{prop}
+    The wedge product is associative:
+    \begin{displaymath}
+      (f \wedge g) \wedge h = f \wedge (g \wedge h)
+    \end{displaymath}
+    for $f \in A_k(V)$, $g \in A_l(V)$ and $h \in A_m(V)$.
+  \end{prop}
+\end{frame}
+\begin{frame}
+  \begin{lem}
+    For $f \in A_k(V)$ and $g \in A_l(V)$, we have
+    \begin{enumerate}[(i)]
+      \item $A(A(f) \otimes g) = k!A(f \otimes g)$
+      \item $A(f \otimes A(g)) = k!A(f \otimes g)$
+    \end{enumerate}
+  \end{lem}
+  \begin{proof}[Proof of (i)]
+    First note that
+    \begin{displaymath}
+      A(A(f) \otimes g) = A(\sum_{\tau \in S_k} (\sgn(\tau) \tau f) \otimes f)
+      = \sum_{\tau \in S_k} A((\sgn(\tau) \tau f) \otimes g)
+    \end{displaymath}
+    Given $\tau \in S_k \subseteq S_{k+l}$ we have $(\tau f) \otimes g = \tau(f
+    \otimes g)$.
+    Therefore
+    \begin{align*}
+      A((\sgn(\tau) \tau f) \otimes g) &=
+      \sum_{\sigma \in S_{k+l}} \sgn(\sigma)\sigma((\sgn(\tau) \tau f) \otimes g)
+      =
+      \sum_{\sigma \in S_{k+l}} \sgn(\sigma) \sgn(\tau)
+      \sigma(\tau(f \otimes g)) 
+      \\
+      &=
+      \sum_{\sigma \in S_{k+l}} \sgn(\sigma \tau)
+      (\sigma \tau)(f \otimes g))
+      =
+      \sum_{\sigma \in S_{k+l}} \sgn(\sigma)
+      (\sigma)(f \otimes g)) = A(f \otimes g)
+    \end{align*}
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \begin{prop}
+    The wedge product is associative:
+    \begin{displaymath}
+      (f \wedge g) \wedge h = f \wedge (g \wedge h)
+    \end{displaymath}
+    for $f \in A_k(V)$, $g \in A_l(V)$ and $h \in A_m(V)$.
+  \end{prop}
+  \begin{proof}
+    This is a direct calculation. Part (i) of the lemma gives:
+    \begin{align*}
+      (f \wedge g) \wedge h &= \frac{1}{(k+l)!m!} A((f \wedge g) \wedge h) \\
+      &=
+      \frac{1}{(k+l)!m!k!l!} A(A(f \otimes g) \otimes h)
+      \\
+      &=
+      \frac{(k+l)!}{(k+l)!m!k!l!} A((f \otimes g) \otimes h)
+      =
+      \frac{1}{k!l!m!} A((f \otimes g) \otimes h)
+    \end{align*}
+    Similarly, part (ii) of the lemma gives $f \wedge (g \wedge h) = 
+    \frac{1}{k!l!m!} A(f \otimes (g \otimes h))$.
+  \end{proof}
+\end{frame}
+\begin{frame}
+  Note that we have proved that $f \wedge g \wedge h = \frac{1}{k!l!m!}
+  A(f \otimes g \otimes h)$ for $f \in A_k(V)$, $g \in A_l(V)$ and $h \in
+  A_m(V)$.
+
+  Let $k \in A_n(V)$. Then
+  \begin{align*}
+    \phantom{=}&f \wedge g \wedge h \wedge k = (f \wedge g \wedge h) \wedge k \\
+    =&
+    \frac{1}{(k+l+m)!n!} A((f \wedge g \wedge h) \otimes k)
+    = \frac{1}{(k+l+m)! n!} A(\frac{1}{k!l!m!} A(f \otimes g \otimes h) \otimes
+    k) \\
+    =& 
+    \frac{1}{k!l!m!n!} A(\frac{1}{(k+l+m)!n!} A(f \otimes g \otimes h) \otimes k)
+    =
+    \frac{1}{k!l!m!n!} A(f \otimes g \otimes h \otimes k)
+  \end{align*}
+  By induction, if $f_1 \in A_{k_1}(V), \dots, f_r \in A_{k_r}(V)$, then
+  \begin{displaymath}
+    f_1 \wedge \dots \wedge f_r =
+    \frac{1}{k_1! \dots k_r!}A(f_1 \otimes \dots \otimes f_r)
+  \end{displaymath}
+\end{frame}
+
+\begin{frame}
+  \begin{example}
+    Let $\alpha^1, \dots, \alpha^k \in A_1(V)$.
+    Then $\alpha^1 \wedge \dots \wedge \alpha^k \in A_k(V)$ is given by
+    \begin{displaymath}
+      \alpha^1 \wedge \dots \wedge \alpha^k  = 
+      A(\alpha^1 \otimes \dots \otimes \alpha^k )
+      =
+      \sum_{\sigma_i \in S_k} \sgn(\sigma) \sigma(
+      \alpha^1 \otimes \dots \otimes \alpha^k 
+      )
+    \end{displaymath}
+    Given $v_1, \dots, v_k \in V$, we get
+    \begin{align*}
+      \alpha^1 \wedge \dots \wedge \alpha^k
+      (
+      v_1,\dots, v_k
+      )
+      &=
+      \sum_{\sigma_i \in S_k} \sgn(\sigma) \sigma(
+      \alpha^1 \otimes \dots \otimes \alpha^k 
+      )
+      (
+      v_1,\dots, v_k
+      ) 
+      \\
+      &=
+      \sum_{\sigma_i \in S_k} \sgn(\sigma) 
+      \alpha^1 \otimes \dots \otimes \alpha^k 
+      (
+      v_{\sigma(1)},\dots, v_{\sigma(k)}
+      ) 
+      \\
+      &=
+      \sum_{\sigma_i \in S_k} \sgn(\sigma) 
+      \alpha^1(v_{\sigma(1)})
+      \otimes \dots \otimes \alpha^k (v_{\sigma(k)}) \\
+    \end{align*}
+    This is the determinant $\det(\alpha^i(v_j))$ of the matrix with $(i,j)$-entry
+    $\alpha^i(v_j)$
+  \end{example}
+\end{frame}
+\begin{frame}
+  \begin{defn}
+    A {\em graded $\R$-algebra} $A = \{A(k) \cond k \ge 0\}$
+    is a collection of $\R$-vector spaces $A(k)$, together with
+    \begin{enumerate}
+      \item unit $1 \in A(0)$
+      \item bilinear multiplication $A(k) \times A(l) \to A(k+l)$,
+        $(a,b) \mapsto a \cdot b$
+    \end{enumerate}
+    such that the multiplication is
+    \begin{enumerate}[(i)]
+      \item unital: $a\cdot 1 = a$, $1 \cdot a = a$
+      \item associative: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$.
+    \end{enumerate}
+    A is {\em anticommutative} if $ab = (-1)^{kl}$
+    for $a \in A(k)$ and $b \in A(l)$.
+  \end{defn}
+  \begin{block}
+    {Summary}
+    $A_*(V) = \{A_k(V) \cond k \ge 0\}$ is an anticommutative 
+    graded algebra when $a \cdot b = a \wedge b$.
+    This is the {\em exterior algebra} of $V$.
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{A basis for $A_k(V)$}
+  Let $e_1, \dots, e_n$ be a basis for $V$.
+  We write $\alpha^1, \dots, \alpha^n$
+  for the dual basis for $A_1(V) = V^\vee$ determined by
+  $\alpha^i(e_j) = \delta^i_j$.
+  Given $I = (i_1, \dots, i_k)$ with each $i_s \in \{1,\dots, n\}$
+  we write 
+  \begin{displaymath}
+    \alpha^I = \alpha^{i_1} \wedge \dots \wedge \alpha^{i_k}
+    \quad \text{and} \quad
+    e_I = (e_{i_1}, \dots, e_{i_k})
+  \end{displaymath}
+  \begin{prop}
+    The wedge products
+    $\{
+    \alpha^I = \alpha^{i_1} \wedge \dots \wedge \alpha^{i_k}
+    \cond 
+    1 \le i_1 < \dots < i_k \le n
+    \}
+    $
+    form a basis for $A_k(V)$.
+  \end{prop}
+  We will prove this very soon.
+\end{frame}
+\begin{frame}
+  \begin{lem}
+    Given
+    $I = (i_1, \dots, i_k)$ with 
+    $
+    1 \le i_1 < \dots < i_k \le n
+    $
+    and 
+    $J = (j_1, \dots, j_k)$ with 
+    $
+    1 \le j_1 < \dots < j_k \le n
+    $
+    we have
+    \begin{displaymath}
+      \alpha^I(e_J) = 
+      \begin{cases}
+        1 & \text{if $I=J$} \\
+        0 & \text{if $I\ne J$}
+      \end{cases}
+    \end{displaymath}
+  \end{lem}
+  \begin{proof}
+    We know that 
+    \begin{displaymath}
+      \alpha^I(e_J) = \alpha^{i_1} \wedge \dots \wedge \alpha^{i_k}
+      (e_{j_1}, \dots, e_{j_k}) = \det [\alpha^{i_r}(e_{j_s})]
+    \end{displaymath}
+    For $I = J$, this is an identity matrix, so $\det [\alpha^{i_r}(e_{j_s})] =
+    1$.
+    For $I \ne J$ we can find an $r$ such that $i_r$ is not equal to any $j_s$.
+    Thus the matrix has a zero row, and the determinant is zero.
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \begin{prop}
+    The wedge products
+    $\{
+    \alpha^I = \alpha^{i_1} \wedge \dots \wedge \alpha^{i_k}
+    \cond 
+    1 \le i_1 < \dots < i_k \le n
+    \}
+    $
+    form a basis for $A_k(V)$.
+  \end{prop}
+  \begin{proof}
+    Linearly independent: suppose $\sum_I c_I \alpha^I = 0$,
+    $c_I \in \R$. Evaluate at any $e_J$:
+    \begin{displaymath}
+      0 = \sum_I c_I \alpha^I(e_J) = c_J
+    \end{displaymath}
+
+    Generators: Given $f \in A_k(V)$, let $c_I = f(e_I)$.
+
+    Claim: $f = \sum_I c_I \alpha^I$.
+
+    Since both sides are alternating it suffices to show that 
+    evaluating $f$ and $\sum_I c_I \alpha^I$ 
+    at each $e_J$ with $J = (j_1 < \dots < j_k)$
+    gives the same result.
+    
+    By the lemma, 
+    \begin{displaymath}
+      \sum_{I} c_I \alpha^I(e_J) = c_J = f(e_J)
+    \end{displaymath}
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \begin{prop}
+    The wedge products
+    $\{
+    \alpha^I = \alpha^{i_1} \wedge \dots \wedge \alpha^{i_k}
+    \cond 
+    1 \le i_1 < \dots < i_k \le n
+    \}
+    $
+    form a basis for $A_k(V)$.
+  \end{prop}
+  \begin{cor}
+    Suppose $\dim V = n$.
+    \begin{enumerate}
+      \item if $0 \le k \le n$, then $\dim A_kV = \binom n k$
+      \item if $k > n$, then $A_kV = 0$.
+    \end{enumerate}
+  \end{cor}
 \end{frame}

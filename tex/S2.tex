@@ -97,7 +97,7 @@
         0 & x \le 0.
       \end{cases}
     \end{displaymath}
-    Then $f \sim_1 g$.
+    Then $f \sim_0 g$.
   \end{example}
 \end{frame}
 
@@ -127,19 +127,20 @@
     $f \in C^{\infty}(U)$
   \end{definition}
   \begin{definition}[Point Derivations]
-    The set $\pder(\R^n)$ of {\em point-derivations at $p$} is the set of 
+    The set $\pder(\R^n)$ of {\em point-derivations at $p$} is the real 
+    vector space of 
     linear maps $D \colon C^{\infty}_p(\R^n) \to \R$ satisfying the Leibniz rule
     \begin{displaymath}
       D(fg) = (Df)g(p) + f(p)Dg.
     \end{displaymath}
   \end{definition}
-  Remark: $\pder(\R^n)$ is a real vector-space.
   \begin{definition}[Directional Derivations]
     For $v \in T_p(\R^n)$ we define $D_v \in \pder(\R^n)$ by
     $D_v([f, U]) = D_v(f)$.
     We write $\phi \colon T_p(\R^n) \to \pder(\R^n)$ for the linear map
     given by $\phi(v) = D_v$.
   \end{definition}
+  After some preparation we will prove the following:
   \begin{thm}
     $\phi \colon T_p(\R^n) \to \pder(\R^n)$, $v \mapsto \phi(v) = D_v$ is an isomorphism.
   \end{thm}
@@ -236,6 +237,7 @@
 \end{frame}
 
 \begin{frame}
+  Let us summarize what we have proved:
   \begin{lemma}
     If $c \in C^{\infty}_p(\R^n)$ is represented by a constant function on 
     $\R^n$, and $D \in \pder(\R^n)$, then $D(c) = 0$.
