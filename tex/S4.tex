@@ -1,0 +1,469 @@
+\section{Differential forms on \texorpdfstring{$\R^n$}  \phantom{s}}
+\begin{frame}
+  Recall that we have identified $T_p\R^n$ with
+  % the vector space of
+  point derivations $D \colon C^{\infty}_p(\R^n) \to \R$.
+
+  $T_p \R^n$ has the canonical basis
+  $\{
+    \frac{\partial}{\partial x^1}\vert_p
+    , \dots, 
+    \frac{\partial}{\partial x^n}\vert_p
+  \}$
+
+  Let $U \subseteq \R^n$ be open. 
+
+  A $C^{\infty}$ vector field on $U$ has the form $X = \sum_i a^i 
+  \frac{\partial}{\partial x^i}$ where $a^i \in C^{\infty}(U)$.
+  \begin{defn}
+    A {\em covector field} on $U$ is a collection of covectors
+    \begin{displaymath}
+      \omega = \{ \omega_p \in (T_p U)^\vee \cond p \in U \}
+    \end{displaymath}
+  \end{defn}
+  For each $p \in U$, there is a bilinear function
+  \begin{displaymath}
+    T_p \R^n \times C^{\infty}(U) \to \R, \quad (X_p, f) \mapsto X_p f
+  \end{displaymath}
+  \begin{defn}
+    The {\em differential} of $f \in C^{\infty}(U)$ is the covector field
+    \begin{displaymath}
+      df = \{df_p \in (T_pU)^\vee \cond p \in U\}, \quad \text{
+        where $df_p(X_p) = X_p f$
+      }
+    \end{displaymath}
+  \end{defn}
+\end{frame}
+\begin{frame}
+  The coordinate functions $x^1, \dots, x^n$ on $U$ give covector fields
+  $dx^1, \dots, dx^n$.
+  \begin{prop}
+    For each $p \in U$, $dx^1_p, \dots, dx^n_p$
+    is the dual basis associated to the basis 
+    $\{
+      \frac{\partial}{\partial x^1}\vert_p
+      , \dots, 
+      \frac{\partial}{\partial x^n}\vert_p
+    \}$
+  \end{prop}
+  \begin{proof}
+    \begin{displaymath}
+    (dx^i_p)(
+      \frac{\partial}{\partial x^j}\vert_p
+    )
+    =
+      \frac{\partial}{\partial x^j}\vert_p
+    (x^i)
+    =
+    \frac{\partial x^i}{\partial x^j}(p) 
+    =
+    \begin{cases}
+      1 & \text{if $i = j$} \\
+      0 & \text{if $i \ne j$}
+    \end{cases}
+    \end{displaymath}
+  \end{proof}
+  \begin{block}
+    {Consequence}
+    A covector field $\omega$ on $U$ can be written uniquely
+    $\omega = \sum_{i=1}^n a_i dx^i$,
+    where $a_i \colon U \to \R$ are functions for $i = 1, \dots, n$.
+  \end{block}
+  \begin{defn}
+    $\omega$ is smooth if each $a_i$ is smooth. Write $\Omega^1(U)$ for the set
+    of smooth covector fields on $U$.
+  \end{defn}
+\end{frame}
+\begin{frame}
+  \frametitle{Differential Forms}
+  \begin{defn}
+    Let $U \subseteq \R^n$ be an open subset.
+    A {\em $k$-form} on $U$ is a collection of alternating
+    $k$-linear functions
+    \begin{displaymath}
+      \omega = \{\omega_p \in A_k(T_pU) \cond p \in U\}
+    \end{displaymath}
+  \end{defn}
+  \begin{example}
+    The differential of $f \in C^{\infty}(U)$ is a $1$-form $df$ on $U$ 
+    with $df_p$ defined by $df_pX_p = X_p f$.
+    In particular, the coordinate functions $x^i \colon U \to \R$
+    define $1$-forms $dx^1, \dots, dx^n$.
+  \end{example}
+  We have just checked that $dx^1_p, \dots, dx^n_p$ is the dual 
+  basis for $(T_p\R^n)^\vee = A_i(T_p\R^n)$ with respect to the basis
+  $\{
+    \frac{\partial}{\partial x^1}\vert_p
+    , \dots, 
+    \frac{\partial}{\partial x^n}\vert_p
+  \}$
+  for $T_p\R^n$.
+
+  We have seen that the $k$-covectors $dx_p^I$ for $I = i_1 < \dots < i_k$
+  form a basis for $A_k(T_p U)$. Here 
+  $dx^I = dx^{i_1} \wedge \dots \wedge dx^{i_n}$.
+  \begin{defn}
+    A $k$-form $\omega = \sum_I a_I dx^I$ is smooth if $a_I \colon U \to \R$
+    is soooth for each $I$.
+  \end{defn}
+\end{frame}
+\begin{frame}
+  \begin{defn}
+    $\Omega^k(U)$ is the real vector space of smooth $k$-forms on $U$.
+  \end{defn}
+  By convention $\Omega^0(U) = C^{\infty}(U)$. Note that $\Omega^k(U) = 0$
+  for $k > n$. (Since $A_k(T_pU) = 0$ for $k > n$.)
+  \begin{defn}
+    The wedge product
+    \begin{displaymath}
+      \wedge \colon \Omega^k(U) \times \Omega^l(U) \to \Omega^{k+l}(U),
+      \quad (\omega, \tau) \mapsto \omega \wedge \tau
+    \end{displaymath}
+    is defined by $(\omega \wedge \tau)_p = \omega_p \wedge \tau_p \in
+    A_{k+l}(T_pU)$.
+  \end{defn}
+  Note that $\omega = \sum a_Idx^I$ and 
+  $\tau = \sum_J b_J dx^J$
+  gives 
+  \begin{displaymath}
+    \omega \wedge \tau =
+    \sum_{I, J} (a_I b_J) dx^I dx^J 
+    =
+    \sum_{I, J \text{disjoint}} (a_I b_J) dx^I dx^J 
+  \end{displaymath}
+  For $I$ and $J$ disjoint, we can find a multiindex $K$ so that 
+  $dx^K = \pm dx^I \wedge dx^J$. This shows that $\omega \wedge \tau$ is
+  smooth.
+\end{frame}
+\begin{frame}
+  \begin{prop}
+    The wedge product makes 
+    \begin{displaymath}
+      \Omega^*(U) = \{\Omega^k(U) \cond k \ge 0 \}
+    \end{displaymath}
+    an anticommutative graded $\R$-algebra with unit $1 \in \Omega^0(U) =
+    C^{\infty}(U).$
+  \end{prop}
+\end{frame}
+\begin{frame}
+  \frametitle{Exterior derivative}
+  Let $U$ be an open subset of $\R^n$.
+  \begin{block}
+    {Goal}
+    Construct the exterior derivative $d \colon \Omega^k(U) \to 
+    \Omega^{k+1}(U)$.
+  \end{block}
+  The differential of a function defines an $\R$-linear function
+  \begin{displaymath}
+    d \colon C^{\infty}(U) = \Omega^0(U) \to \Omega^1(U), \quad f \mapsto df
+  \end{displaymath}
+  with $df_p X_p = X_p f$.
+\end{frame}
+\begin{frame}
+  \begin{prop}
+    If $f \in C^{\infty}(U)$, then $df = \sum_{i=1}^n 
+    \frac{\partial f}{\partial x^i} dx^i$.
+  \end{prop}
+  \begin{proof}
+    Write $f = \sum_i a_i dx^i$ for $a_i \colon U \to \R$, $i=1, \dots, n$.
+    By construction
+    \begin{displaymath}
+      df_p(\frac{\partial}{\partial x^i}\vert_p) =
+      \frac{\partial}{\partial x^i}\vert_p(f) =
+      \frac{\partial f}{\partial x^i}(p)
+    \end{displaymath}
+    and
+    \begin{displaymath}
+      (\sum_{j=1}^n a_j(p) dx^j_p)(\frac{\partial}{\partial x^i}\vert_p)
+      = a_i(p),
+    \end{displaymath}
+    so $a_i = \frac{\partial f}{\partial x_i}$.
+  \end{proof}
+  This shows that $df$ is a smooth $1$-form and that $d$ is $\R$-linear.
+\end{frame}
+\begin{frame}
+  \begin{defn}
+    For $k \ge 1$, the exterior derivative $d \colon \Omega^k(U) 
+    \to \Omega^{k+1}(U)$ is the $\R$-linear function defined as follows:
+    \begin{center}
+      If $\omega = \sum_I a_I dx^I$, then $d\omega = \sum_I (da_I) \wedge dx^I$.
+    \end{center}
+  \end{defn}
+  This expands to
+  $
+    d \omega = \sum_I \sum_i 
+    \frac{\partial a_I}{\partial x^i} dx^i \wedge dx^I
+    $
+  \begin{example}
+    $\omega = fdx + gdy$ on an open set $U \subseteq \R^2$.
+    Then
+    \begin{align*}
+      d\omega &= df \wedge dx + dg \wedge dy \\
+      &= 
+      (
+      \frac{\partial f}{\partial x} \wedge dx
+      +
+      \frac{\partial f}{\partial y} \wedge dy
+      )
+      \wedge dx
+      +
+      (
+      \frac{\partial g}{\partial x} \wedge dx
+      +
+      \frac{\partial g}{\partial y} \wedge dy
+      )
+      \wedge dy \\
+      &=
+      \frac{\partial f}{\partial y} \wedge dy
+      \wedge dx
+      +
+      \frac{\partial g}{\partial x} \wedge dx
+      \wedge dy \\
+      &=
+      (
+      \frac{\partial g}{\partial x}
+      -
+      \frac{\partial f}{\partial y}
+      )
+      dx \wedge dy
+    \end{align*}
+  \end{example}
+\end{frame}
+\begin{frame}
+  \begin{example}
+    $\omega = \frac{1}{x^2 + y^2}(-ydx + xdy)$ on $U = \R^2 \setminus \{0\}$.
+    Notice that
+    $\omega = fdx + gdy$, where $f(x,y) =
+    \frac{-y}{x^2 + y^2}$ and
+    $g(x, y) = 
+    \frac{x}{x^2 + y^2}$.
+    Using the rule for derivation of fractions, we get
+    $\frac{\partial f}{\partial y} = \frac{-(x^2 + y^2) + 2y^2}{(x^2 +
+    y^2)^2}$.
+    Similarly 
+    $\frac{\partial g}{\partial x} = \frac{(x^2 + y^2) - 2x^2}{(x^2 +
+    y^2)^2}$.
+    % 
+
+    % In order to calculate $d \omega$, we decompose $\omega = \omega^1 +
+    % \omega^2$,
+    % where $\omega^1 = \frac{1}{x^2 + y^2}(-ydx) = a^1(x,y) dx$
+    % and $\omega^2 = \frac{1}{x^2 + y^2}xdy$.
+    % Since $dx \wedge dx = 0$, we have $d\omega^1 = 
+    % \frac{\partial a^1}{\partial y}(x, y) dy \wedge dx 
+    % =
+    % -\frac{\partial a^1}{\partial y}(x, y) dx \wedge dy$.
+    % Using the rule for derivation of fractions, we get
+    % $\frac{\partial a^1}{\partial y} = \frac{-(x^2 + y^2) + 2y^2}{(x^2 +
+    % y^2)^2}$.
+    % Similarly 
+    % $\frac{\partial a^2}{\partial x} = \frac{(x^2 + y^2) - 2x^2}{(x^2 +
+    % y^2)^2}$.
+    In conclusion
+    \begin{displaymath}
+      d\omega = \frac{(x^2 + y^2) - 2x^2 +(x^2 + y^2) - 2y^2}{(x^2 + y^2)^2}
+      dx \wedge dy
+      = 0
+    \end{displaymath}
+  \end{example}
+\end{frame}
+\begin{frame}
+  \begin{prop}
+    Properties of $d \colon \Omega^k(U) \to \Omega^{k+1}(U)$.
+    \begin{enumerate}[(i)]
+      \item $d(\omega \wedge \tau) = (d\omega) \wedge \tau + (-1)^{\deg \omega}
+        \omega \wedge (d \tau)$
+      \item $d \circ d = 0 \colon \Omega^k(U) \to \Omega^{k+2}(U)$
+      \item If $X$ is a smooth vector field on $U$ and $f \in \Omega^0(U) =
+        C^{\infty}(U)$, then $df_p(X_p) = X_p(f)$ for all $p \in U$.
+    \end{enumerate}
+  \end{prop}
+  \begin{proof}
+    (i): By linearity, it suffices to consider $\omega = fdx^I \in \Omega^k(U)$ and 
+    $\tau = gdx^J \in \Omega^l(U)$.
+    Then
+    \begin{align*}
+      d(\omega \wedge \tau) &=
+      d(fg dx^I \wedge dx^J) \\
+      &=
+      \sum_i \frac{\partial fg}{\partial x^i} 
+      dx^i \wedge
+      dx^I \wedge dx^J \\
+      &=
+      \sum_i \frac{\partial f}{\partial x^i}g 
+      dx^i \wedge
+      dx^I \wedge  dx^J +
+      \sum_i f \frac{\partial g}{\partial x^i} 
+      dx^i \wedge
+      dx^I \wedge dx^J 
+    \end{align*}
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \begin{proof}[Proof (cont.)]
+    (i): By linearity, it suffices to consider $\omega = fdx^I \in \Omega^k(U)$ and 
+    $\tau = gdx^J \in \Omega^l(U)$.
+    Then
+    \begin{align*}
+      d(\omega \wedge \tau) &=
+      d(fg dx^I \wedge dx^J) \\
+      &=
+      \sum_i \frac{\partial fg}{\partial x^i} 
+      dx^i \wedge
+      dx^I \wedge dx^J \\
+      &=
+      \sum_i \frac{\partial f}{\partial x^i}g 
+      dx^i \wedge
+      dx^I \wedge  dx^J +
+      \sum_i f \frac{\partial g}{\partial x^i} 
+      dx^i \wedge
+      dx^I \wedge dx^J 
+    \end{align*}
+    Now, $dx^i \wedge dx^I \wedge dx^J = (-1)^k dx^I \wedge dx^i \wedge dx^J$, 
+    so
+    \begin{align*}
+      d(\omega \wedge \tau) &=
+      \sum_i \frac{\partial f}{\partial x^i}g 
+      dx^i \wedge
+      dx^I \wedge  dx^J +
+      (-1)^k
+      \sum_i f \frac{\partial g}{\partial x^i} 
+      dx^I
+      \wedge dx^i
+      \wedge dx^J  \\
+      &= (d\omega) \wedge \tau + (-1)^k \omega \wedge (d\tau)
+    \end{align*}
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \begin{proof}[Proof (cont.)]
+    (ii): By linearity, it suffices to
+    show that $d(d(\omega)) = 0$ for $\omega = fdx^I$.
+    Direct calculation gives
+    \begin{displaymath}
+      d(d(fdx^I)) = d(\sum_i 
+      \frac{\partial f}{\partial x^i} dx^i \wedge dx^I)
+      =
+      \sum_{i, j}
+      \frac{\partial^2 f}{\partial x^j \partial x^i} dx^j \wedge dx^i \wedge dx^I)
+    \end{displaymath}
+    Here, if $i = j$, then $dx^j \wedge dx^i = 0$. If $i < j$, then
+    $dx^j \wedge dx^i = - dx^i \wedge dx^j$, and 
+    $
+    \frac{\partial^2 f}{\partial x^j \partial x^i} = 
+    \frac{\partial^2 f}{\partial x^i \partial x^j}
+    $,
+    so these terms cancel. This shows that $d^2(fdx^I) = d(d(fdx^I)) = 0$.
+
+    \vspace{1cm}
+
+    (iii): The formula $df_p(X_p) = X_p(f)$ is actually the definition of $df$.
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \begin{prop}[Uniqueness of exterior derivative]
+    Let $D \colon \Omega^k(U) \to \Omega^{k+1}(U)$ be a collection
+    of $\R$-linear functions for $k \ge 0$ and suppose that
+    \begin{enumerate}[(i)]
+      \item $D(\omega \wedge \tau)= D(\omega) \wedge \tau + (-1)^{\deg \omega}
+        \omega \wedge D(\tau)$
+      \item $D \circ D = 0$
+      \item For $X$ a smooth vector field and $f \in \Omega^0(U) = C^{\infty}(U)$,
+        we have $(Df)_p(X_p) = X_p(f)$ for all $p \in U$.
+    \end{enumerate}
+    Then $D = d$ is the exterior derivative.
+  \end{prop}
+  Remark that we have proved that $d$ satisfies (i), (ii) and (iii).
+\end{frame}
+
+\begin{frame}
+  \begin{proof}
+    By linearity it suffices to show that $D \omega = d \omega$
+    for $\omega = fdx^I$.
+
+    By (i) $D\omega = D(f) \wedge dx^I + fD(dx^I)$.
+
+    By (ii) $D f = df$, so
+    \begin{displaymath}
+      D(f) \wedge dx^I = df \wedge dx^I = d(f dx^I) = d\omega
+    \end{displaymath}
+    It remains to show that $D(dx^I) = 0$.
+    \begin{description}
+      \item[$k=1$] $D(dx^i) = DDx^i = 0$ by (ii)
+      \item[$k=2$] $D(dx^i \wedge x^j) = D(dx^i)\wedge dx^j
+        - dx^i \wedge D(dx^j) = 0 - 0 = 0$
+      \item[$k=3$] Let $\omega = dx^i \wedge dx^I$ with $I = (i_1 < i_2)$.
+        Then $D\omega = D(dx^i \wedge dx^I) = D(dx^i) \wedge dx^I
+        - dx^i \wedge D(x^I) = 0 - 0 = 0$
+    \end{description}
+    General case by induction.
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \frametitle{Applications to vector calculus}
+  Let $U$ be an open subset of $\R^3$.
+  A smooth vector field $X$ on $U$ can be written
+  \begin{displaymath}
+    X =
+    P \frac{\partial}{\partial x}
+    +
+    Q \frac{\partial}{\partial y}
+    +
+    R \frac{\partial}{\partial z}
+  \end{displaymath}
+  We can identify $X$ with the vector function 
+  \begin{displaymath}
+    \begin{bmatrix}
+      P \\ Q \\ R
+    \end{bmatrix}
+    \colon U \to \R^3
+  \end{displaymath}
+  Let $\vfields(U)$ be the vector space of smooth vector fields on $U$.
+  There are linear maps
+  \begin{displaymath}
+    \operatorname{grad} \colon C^{\infty}(U) \to \vfields(U), \quad f \mapsto 
+    \begin{bmatrix}
+      {\partial f} / {\partial x} \\
+      {\partial f} / {\partial y} \\
+      {\partial f} / {\partial z} \\
+    \end{bmatrix}
+  \end{displaymath}
+\end{frame}
+\begin{frame}
+  \begin{displaymath}
+    \operatorname{curl} \colon \vfields(U) \to \vfields(U), \quad
+    \begin{bmatrix}
+      P \\ Q \\ R
+    \end{bmatrix}
+    \mapsto
+    \begin{bmatrix}
+      {\partial} / {\partial x} \\
+      {\partial} / {\partial y} \\
+      {\partial} / {\partial z} \\
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+      P \\ Q \\ R
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \partial R / \partial y - \partial Q / \partial z \\
+      -(\partial R / \partial x - \partial P / \partial z) \\
+      \partial Q / \partial x - \partial P / \partial y
+    \end{bmatrix}
+  \end{displaymath}
+  \begin{displaymath}
+    \operatorname{div} \colon \vfields(U) \to C^{\infty}(U), \quad
+    \begin{bmatrix}
+      P \\ Q \\ R
+    \end{bmatrix}
+    \mapsto 
+    \partial P / \partial x
+    +
+    \partial Q / \partial y
+    +
+    \partial R / \partial z
+  \end{displaymath}
+\end{frame}

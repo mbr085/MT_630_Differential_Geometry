@@ -2,7 +2,7 @@
 # Also, include non-file targets in .PHONY so they are run regardless of any
 # file of the given name existing.
 .PHONY: MyDoc.pdf all clean
-
+tex_files :=$(wildcard S*.tex)
 # The first rule in a Makefile is the one executed by default ("make"). It
 # should always be the "all" rule, so that "make" and "make all" are identical.
 all: MyDoc.pdf
@@ -30,7 +30,7 @@ all: MyDoc.pdf
 # missing file reference and interactively asking you for an alternative.
 
 
-MyDoc.pdf: main.tex
+MyDoc.pdf: main.tex $(tex_files)
 	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make main.tex
 
 
