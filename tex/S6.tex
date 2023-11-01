@@ -1,0 +1,154 @@
+\begin{frame}
+  \frametitle{Smooth Maps Between Manifolds}
+  \begin{defn}
+    A smooth manifold $M$ of dimension $n$ is a 
+    topological manifold of dimension $n$
+    together with a maximal smooth atlas 
+    $\{(U_\alpha, \phi_\alpha)\}$.
+  \end{defn}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/two_charts.png}
+  \end{center}
+  \begin{defn}
+    A continuous function $f \colon M \to \R^m$ is
+    smooth at $p \in M$ if for every chart $(U, \phi)$
+    with $p \in U$, the map
+    $f \circ \phi^{-1} \colon \phi(U) \to \R^m$
+    is smooth at $\phi(p)$.
+
+    The function $f$ is smooth on $M$ if it is smooth at every 
+    $p \in M$.
+  \end{defn}
+\end{frame}
+\begin{frame}
+  \begin{prop}
+    The following are equivalent:
+    \begin{enumerate}[(i)]
+      \item $f \colon M \to \R^m$ is smooth
+      \item $M$ has an atlas such that
+        for every chart $(U_\alpha, \phi_\alpha)$ in the atlas,
+        $f \circ \phi_\alpha^{-1}$ is smooth.
+      \item For every chart $(V, \psi)$ on $M$ the 
+        function $f \circ \psi^{-1}$ is smooth.
+    \end{enumerate}
+  \end{prop}
+  \begin{proof}
+    By definintion (i) and (iii) are equivalent.
+    We show that (ii) implies (iii) and that (iii) implies (ii).
+    Clearly (iii) implies (ii), so we only need to show
+    that (ii) implies (iii).
+    Let $\{(U_\alpha, \phi_\alpha)\}$ be a smooth atlas for the
+    differentiable structure on $M$ and let $(U, \phi)$ be a 
+    chart on $M$. Let $p \in U$ and pick a chart $(U_\alpha, \phi_\alpha)$
+    in the given atlas
+    with $p \in U_\alpha$. 
+    By (ii), the map $f \circ \phi_\alpha^{-1}$ is smooth. Restricted to
+    $\phi(U \cap U_\alpha)$ we have
+    \begin{displaymath}
+      f \circ \phi^{-1} = (f \circ \phi_\alpha^{-1}) \circ
+      (\phi_\alpha \circ \phi^{-1})
+    \end{displaymath}
+    This is a composition of two smooth maps between open 
+    sets in Euclidean space, so it is smooth at $\phi(p)$.
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \begin{example}
+    The inclusion $S^1 \subseteq \R^2$ is smooth.
+    We can see this by considering the atlas we constructed earlier where
+    one of the charts $(U, \phi)$ given as
+    \begin{displaymath}
+      U = \{(x,y) \in S^1 \cond x > 0\}, \quad \phi \colon U \to (-1,1),
+      \quad \phi(x, y) = y.
+    \end{displaymath}
+    Then $\phi^{-1}(t) = (\sqrt{1 - t^2}, t)$ is smooth. 
+
+    Similarly for the other charts.
+  \end{example}
+\end{frame}
+\begin{frame}
+  \begin{block}
+    {Observation}
+    A map $f \colon M \to \R^m$ is smooth if and only if 
+    the map $f \circ \phi^{-1}$ is smooth.
+  \end{block}
+  \begin{defn}
+    Let $M$ and $N$ be smooth manifolds with $\dim(M) = m$ and
+    $\dim(N) = n$. A continuous map $F \colon N \to M$ is {\em smooth}
+    at a point $p \in N$ for every chart $(V, \psi)$ about $F(p)$ 
+    in $M$, the map $\psi \circ F \colon F^{-1}(V) \to \R^m$
+    is smooth at $p$.
+    The map $F$ is {\em smooth} if it is smooth at every $p \in N$.
+  \end{defn}
+  \begin{remark}
+    Since $F^{-1}(V)$ is an open subset of $N$, it is a smooth mainfold of 
+    dimension $n$.
+  \end{remark}
+  \begin{remark}
+    $F$ is smooth if and only if for all charts $(U, \phi)$ for $N$ and 
+    all charts $(V, \psi)$ for $M$, the composed map 
+    $\phi^{-1} \circ F \circ \psi \colon \phi(U) \to \R^m$ is smooth.
+  \end{remark}
+\end{frame}
+\begin{frame}
+  \begin{remark}
+    Considering $M = \R^n$ as a smooth mainfold with the standard
+    differential structure, by the previous proposition,
+    a map $F \colon N \to M$ is a smooth map of manifolds 
+    if and only if the map $F \colon N \to \R^n$ is smooth
+    in the sense introduced first.
+  \end{remark}
+\end{frame}
+\begin{frame}
+  \begin{prop}
+    The following are equivalent:
+    \begin{enumerate}[(i)]
+      \item $F \colon N \to M$ is smooth
+      \item There exists an atlas $\{(V_\beta, \psi_\beta)\}$
+        for $M$ such that for every chart $(V_\beta, \psi_\beta)$
+        in the atlas, the map $\psi_\beta \circ F \colon F^{-1}(V) \to \R^m$
+        is smooth.
+      \item For every chart $(V, \psi)$ on $M$ the map
+        $\psi \circ F \colon F^{-1}(V) \to \R^m$ is smooth.
+    \end{enumerate}
+  \end{prop}
+  \begin{proof}
+    Again, we only need to show that (ii) implies (iii).
+    Let $(U, \psi)$ be a chart on $M$. We need to show that 
+    for every $p \in N$ with $F(p) \in U$, the map $\psi \circ F$ is smooth
+    at $p$. Pick a chart $(V_\beta, \psi_\beta)$ with $F(p) \in V_\beta$.
+    Then restricted to $F^{-1}(V \cap V_{\beta})$ we have
+    \begin{displaymath}
+      \psi \circ F = (\psi \circ \psi_{\beta}^{-1}) \circ (\psi_\beta \circ F).
+    \end{displaymath}
+    Since $\psi_\beta \circ F$ is smooth at $p$ and
+    $\psi \circ \psi_{\beta}^{-1} \colon \psi_{\beta}(V \cap V_{\beta}) \to \psi(V)$
+    is smooth, we conclude that 
+    $\psi \circ F$ is smooth at $p$.
+  \end{proof}
+\end{frame}
+\begin{frame}
+  \begin{prop}
+    If $F \colon N \to M$ and $G \colon M \to P$
+    are smooth maps of smooth manifolds, then so is 
+    the composite $G \circ F \colon N \to P$.
+  \end{prop}
+  \begin{proof}
+    Let $p \in N$, let $(V, \psi)$ be a chart around $F(p) \in M$ 
+    and let $(W, \sigma)$ be a chart around $G \circ F(p)$ in $P$.
+    Then locally,
+    \begin{displaymath}
+      \sigma \circ (G \circ F) = (\sigma \circ G \circ \psi^{-1}) \circ (\psi
+      \circ F)
+    \end{displaymath}
+    is a composition of smooth maps between open subsets of Euclidean space.
+  \end{proof}
+  \begin{example}
+    Suppose that $f \colon \R^2 \to \R$ is smooth.
+
+    Then the restriction to $i \colon S^1 \to \R^2$ of
+    $f$ is a smooth map $f \vert_{S^1} \colon S^1 \to \R$.
+    This is because that $f \vert_{S^1}  = f \circ i$
+    is the composition of two smooth maps.
+  \end{example}
+\end{frame}
