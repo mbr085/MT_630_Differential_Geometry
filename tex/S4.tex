@@ -431,7 +431,7 @@
     \end{bmatrix}
   \end{displaymath}
 \end{frame}
-\begin{frame}
+\begin{frame}[fragile]
   \begin{displaymath}
     \operatorname{curl} \colon \vfields(U) \to \vfields(U), \quad
     \begin{bmatrix}
@@ -466,4 +466,74 @@
     +
     \partial R / \partial z
   \end{displaymath}
+  \begin{prop}
+    There is a commutative diagram
+    \begin{displaymath}
+      \begin{tikzcd}[row sep=huge]
+        \Omega^0(U) \arrow[r, "d"] \arrow[d, <->, "="] &
+        \Omega^1(U)
+        \arrow[r, "d"] \arrow[d, <->, "\cong"] &
+        \Omega^2(U)
+        \arrow[r, "d"] \arrow[d, <->, "\cong"] &
+        \Omega^3(U)\arrow[d, <->, "\cong"] 
+        \\
+        C^{\infty}(U) 
+        \arrow[r, "\operatorname{grad}"]
+        &
+        \vfields(U)
+        \arrow[r, "\operatorname{curl}"]
+        &
+        \vfields(U)
+        \arrow[r, "\operatorname{div}"]
+        &
+        C^{\infty}(U) 
+      \end{tikzcd}
+    \end{displaymath}
+  \end{prop}
+\end{frame}
+\begin{frame}
+  The vertical isomorphisms are:
+  \begin{displaymath}
+    \Omega^1(U) \leftrightarrow \vfields(U), \quad
+    Pdx + Qdy + Rdz \leftrightarrow
+    \begin{bmatrix}
+      P \\ Q \\ R
+    \end{bmatrix}
+  \end{displaymath}
+  \begin{displaymath}
+    \Omega^2(U) \leftrightarrow \vfields(U), \quad
+    P dy \wedge dz + Q dz \wedge dx + R dx \wedge dy 
+    \leftrightarrow 
+    \begin{bmatrix}
+      P \\ Q \\ R
+    \end{bmatrix}
+  \end{displaymath}
+  \begin{displaymath}
+    \Omega^3(U) \leftrightarrow C^{\infty}(U), \quad
+    f dx \wedge dy \wedge dz \leftrightarrow f
+  \end{displaymath}
+  We check the middle square in the diagram:
+  \begin{align*}
+    &d(Pdx + Qdy + Rdz) 
+    \\
+    &=
+    \phantom{+}
+    \frac{\partial P}{\partial dy} dy \wedge dx +
+    \frac{\partial P}{\partial dx} dz \wedge dx
+    \\
+    &\phantom{=}
+    +
+    \frac{\partial Q}{\partial dx} dx \wedge dy +
+    \frac{\partial Q}{\partial dz} dz \wedge dy
+    \\
+    &\phantom{=}
+    +
+    \frac{\partial R}{\partial dx} dx \wedge dz +
+    \frac{\partial R}{\partial dy} dy \wedge dz 
+    \\
+    &=
+      (\partial R / \partial y - \partial Q / \partial z) dy \wedge dz 
+      -(\partial R / \partial x - \partial P / \partial z) dz \wedge dx
+      + (\partial Q / \partial x - \partial P / \partial y) dx \wedge dy
+  \end{align*}
 \end{frame}
